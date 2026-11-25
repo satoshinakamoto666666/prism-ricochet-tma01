@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>PRISM RICOCHET — Physics &amp; Merge Roguelite</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage" class="stage">
+  <div id="frame" class="frame">
+    <canvas id="canvas" width="390" height="844" aria-label="Prism Ricochet game arena"></canvas>
+
+    <header class="hud" aria-label="Match telemetry">
+      <div class="hud-top">
+        <div class="hud-cell">
+          <span class="hud-label">WAVE</span>
+          <b id="hud-wave" class="hud-val">1</b>
+        </div>
+        <div class="hud-cell hud-score-cell">
+          <span class="hud-label">SCORE</span>
+          <b id="hud-score" class="hud-val hud-score">0</b>
+        </div>
+        <div class="hud-cell hud-right">
+          <span class="hud-label">COMBO</span>
+          <b id="hud-combo" class="hud-val hud-combo">-</b>
+        </div>
+        <div class="hud-actions">
+          <button id="btn-recall" class="icon-btn" type="button" title="Recall volley" aria-label="Recall volley" hidden>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4v4h4"/><path d="M3.4 8A5 5 0 1 0 5 4.3L3 6"/></svg>
+          </button>
+          <button id="btn-mute" class="icon-btn" type="button" title="Toggle sound" aria-label="Toggle sound" aria-pressed="false">
+            <svg id="ico-sound-on" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6v4h2.8l3.7 3V3L5.3 6H2.5z"/><path d="M11.5 5.5a3.5 3.5 0 0 1 0 5"/><path d="M13.3 3.7a6 6 0 0 1 0 8.6"/></svg>
+            <svg id="ico-sound-off" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" hidden><path d="M2.5 6v4h2.8l3.7 3V3L5.3 6H2.5z"/><path d="M11.5 6l3 4m0-4l-3 4"/></svg>
+          </button>
+        </div>
+      </div>
+      <div id="hud-mods" class="mod-strip" aria-label="Active upgrades"></div>
+    </header>
+
+    <div id="aim-hint" class="aim-hint">Drag anywhere to aim &middot; Release to fire</div>
+
+    <section id="overlay-upgrade" class="overlay" aria-label="Wave upgrade draft" hidden>
+      <div class="sheet">
+        <div class="sheet-head">
+          <span id="draft-wave-label" class="sheet-kicker">WAVE 1 CLEARED</span>
+          <h2>Select 1 Upgrade</h2>
+        </div>
+        <div id="draft-cards" class="card-stack"></div>
+      </div>
+    </section>
+
+    <section id="overlay-revive" class="overlay" aria-label="Near miss continue" hidden>
+      <div class="sheet sheet-compact">
+        <div class="sheet-head">
+          <span class="sheet-kicker danger">PERIMETER BREACH</span>
+          <h2>Last Stand Available</h2>
+        </div>
+        <p class="sheet-copy">Detonate the bottom hazard rows, restore Aegis floor shields, and continue Wave <b id="revive-wave">1</b>.</p>
+        <div class="sheet-stats">
+          <div><span>Score</span><b id="revive-score">0</b></div>
+          <div><span>Best Combo</span><b id="revive-combo">0x</b></div>
+        </div>
+        <div class="sheet-actions">
+          <button id="btn-revive-yes" class="btn-primary" type="button">Aegis Revive &amp; Blast</button>
+          <button id="btn-revive-no" class="btn-secondary" type="button">End Run</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="overlay-gameover" class="overlay" aria-label="Run summary" hidden>
+      <div class="sheet sheet-compact">
+        <div class="sheet-head">
+          <span class="sheet-kicker">RUN COMPLETE</span>
+          <h2 id="go-score">0</h2>
+        </div>
+        <div class="sheet-stats">
+          <div><span>Wave</span><b id="go-wave">1</b></div>
+          <div><span>Best Combo</span><b id="go-combo">0x</b></div>
+          <div><span>Best Score</span><b id="go-best">0</b></div>
+        </div>
+        <div class="sheet-actions">
+          <button id="btn-restart" class="btn-primary" type="button">Play Again</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<script src="game.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>
